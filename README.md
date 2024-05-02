@@ -4,7 +4,13 @@ _Status_: usable [TODO](#TODO)
 
 Show Harpoon buffers in a neo-tree panel
 
+![screenshot](./harpoon-buffers.jpg)
+
+## Install
+
 Install via lazy.nvim:
+
+Example:
 
 ```lua
   {
@@ -23,7 +29,7 @@ Install via lazy.nvim:
   }
 ```
 
-with edgy:
+Add edgy to fix the position of the harpoon-buffers panel in the tree.:
 
 ```lua
   {
@@ -48,7 +54,6 @@ with edgy:
 	...
 ```
 
-![screenshot](./harpoon-buffers.jpg)
-
 ## TODO
 
+- [ ] delete action `d` to remove buffer from harpoon
