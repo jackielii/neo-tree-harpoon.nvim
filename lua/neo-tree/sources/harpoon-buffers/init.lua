@@ -15,15 +15,6 @@ local M = {
 	display_name = " Harpoon Buffers ",
 }
 
-local function indexOf(t, value)
-	for i, v in ipairs(t) do
-		if v == value then
-			return i
-		end
-	end
-	return -1
-end
-
 local fnmod = vim.fn.fnamemodify
 
 ---Navigate to the given path.
@@ -92,8 +83,14 @@ M.follow = function(callback, force_show)
 	utils.debounce("harpoon-buffers-follow", function()
 		local state = manager.get_state(M.name)
 		local path_to_reveal = vim.fn.expand("%:p")
+
+		-- renderer.position.set(state, path_to_reveal)
 		return renderer.focus_node(state, path_to_reveal, true)
 	end, 100, utils.debounce_strategy.CALL_LAST_ONLY)
+end
+
+function M.refresh()
+	manager.refresh(M.name)
 end
 
 ---Configures the plugin, should be called before the plugin is used.
@@ -101,16 +98,13 @@ end
 --wants to change from the defaults. May be empty to accept default values.
 M.setup = function(config, global_config)
 	local Extensions = require("harpoon.extensions")
-	local function refresh()
-		manager.refresh(M.name)
-	end
 	Extensions.extensions:add_listener({
 		SELECT = M.follow,
-		ADD = refresh,
-		REMOVE = refresh,
-		REORDER = refresh,
-		LIST_CHANGE = refresh,
-		POSITION_UPDATED = refresh,
+		ADD = M.refresh,
+		REMOVE = M.refresh,
+		REORDER = M.refresh,
+		LIST_CHANGE = M.refresh,
+		POSITION_UPDATED = M.refresh,
 	})
 
 	manager.subscribe(M.name, {
