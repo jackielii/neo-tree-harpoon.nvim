@@ -48,5 +48,7 @@ with edgy:
 	...
 ```
 
+![screenshot](./harpoon-buffers.jpg)
+
 ## TODO
-- [ ] remove item action
+
