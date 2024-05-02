@@ -14,12 +14,32 @@ local M = {}
 -- 	print(string.format("example_command: id=%s, name=%s", id, name))
 -- end
 
+local function get_rel_path(path)
+	local Path = require("plenary.path")
+	return Path:new(path):make_relative(vim.loop.cwd())
+end
+
 M.refresh = function(state)
 	manager.refresh("harpoon-buffers", state)
 end
 
 M.show_debug_info = function(state)
 	print(vim.inspect(state))
+end
+
+M.delete = function(state)
+	local node = state.tree:get_node()
+	if node then
+		if node.type == "message" then
+			return
+		end
+		local list = require("harpoon"):list()
+		local item = list:get_by_value(get_rel_path(node.path))
+		if item then
+			list:remove(item)
+		end
+		M.refresh(state)
+	end
 end
 
 cc._add_common_commands(M)
