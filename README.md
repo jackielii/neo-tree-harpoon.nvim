@@ -56,4 +56,4 @@ Add edgy to fix the position of the harpoon-buffers panel in the tree.:
 
 ## TODO
 
-- [ ] delete action `d` to remove buffer from harpoon
+- [x] delete action `d` to remove buffer from harpoon
