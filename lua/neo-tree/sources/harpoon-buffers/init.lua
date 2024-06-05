@@ -32,18 +32,20 @@ M.navigate = function(state, path, path_to_reveal, callback, async)
 
 	for i = 1, #list do
 		local item = list[i]
-		local path = vim.fn.fnamemodify(item.value, ":p")
-		if path then
-			table.insert(items, {
-				id = path,
-				name = vim.fn.fnamemodify(path, ":t"),
-				type = "file",
-				ext = path:match("%.([-_,()%s%w%i]+)$"),
-				path = path,
-				extra = {
-					index = i,
-				},
-			})
+		if item then
+			local path = vim.fn.fnamemodify(item.value, ":p")
+			if path then
+				table.insert(items, {
+					id = path,
+					name = vim.fn.fnamemodify(path, ":t"),
+					type = "file",
+					ext = path:match("%.([-_,()%s%w%i]+)$"),
+					path = path,
+					extra = {
+						index = i,
+					},
+				})
+			end
 		end
 	end
 
