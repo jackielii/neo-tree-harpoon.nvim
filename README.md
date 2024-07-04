@@ -1,6 +1,6 @@
 # neo-tree-harpoon.nvim
 
-_Status_: usable [TODO](#TODO)
+_Status_: Been using it for a while now. Feature requests are welcome.
 
 Show Harpoon buffers in a neo-tree panel
 
@@ -57,3 +57,4 @@ Add edgy to fix the position of the harpoon-buffers panel in the tree.:
 ## TODO
 
 - [x] delete action `d` to remove buffer from harpoon
+- [ ] add action to move buffer up/down in the list
